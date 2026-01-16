@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://pavanlamani860_db:8fHwe1ijU3ptEQPr@cluster0.ps341rn.mongodb.net/?appName=Cluster0"
-    );
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB Atlas connected successfully");
   } catch (error) {
     console.error("MongoDB connection failed:", error.message);
