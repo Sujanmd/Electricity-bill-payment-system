@@ -1,0 +1,67 @@
+<%- include('header', { title: 'Dashboard' , user: user }) %>
+
+    <div class="dashboard-header">
+        <h2>Your Electricity Bills</h2>
+        <p>View and manage all your monthly bills.</p>
+    </div>
+
+    <div class="card" style="margin-top: 2rem;">
+        <% if (bills.length===0) { %>
+            <div class="text-center" style="padding: 2rem;">
+                <h3>No bills found</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">You're all caught up!</p>
+            </div>
+            <% } else { %>
+                <div style="overflow-x: auto;">
+                    <table class="bill-table">
+                        <thead>
+                            <tr>
+                                <th>Billing Month</th>
+                                <th>Units Consumed</th>
+                                <th>Rate / Unit</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% bills.forEach(bill=> { %>
+                                <tr>
+                                    <td>
+                                        <%= bill.billingMonth %>
+                                    </td>
+                                    <td>
+                                        <%= bill.unitsConsumed %>
+                                    </td>
+                                    <td>₹<%= bill.ratePerUnit %>
+                                    </td>
+                                    <td style="font-weight: 600;">₹<%= bill.totalAmount %>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="status-badge <%= bill.status === 'Paid' ? 'status-paid' : 'status-unpaid' %>">
+                                            <%= bill.status %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <% if (bill.status==='Unpaid' ) { %>
+                                            <form method="POST" action="/user/pay" style="display:inline;">
+                                                <input type="hidden" name="billId" value="<%= bill._id %>">
+                                                <input type="hidden" name="email" value="<%= user.email %>">
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="padding: 0.4rem 1rem; font-size: 0.9rem;">Pay Now</button>
+                                            </form>
+                                            <% } else { %>
+                                                <span
+                                                    style="color: var(--text-muted); font-size: 0.9rem;">Completed</span>
+                                                <% } %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
+    </div>
+
+    <%- include('footer') %>

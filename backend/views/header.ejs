@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= typeof title !=='undefined' ? title : 'Electricity Bill System' %> | Electricity Bill System
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">⚡ PowerPay</a>
+            </div>
+            <div class="nav-links">
+                <% if (typeof user !=='undefined' && user) { %>
+                    <span class="user-greeting">Hi, <%= user.name %></span>
+                    <% if (user.role==='admin' ) { %>
+                        <a href="/admin" class="nav-item">Dashboard</a>
+                        <% } else { %>
+                            <a href="/user?email=<%= user.email %>" class="nav-item">My Bills</a>
+                            <% } %>
+                                <a href="/logout" class="btn btn-outline">Logout</a>
+                                <% } else { %>
+                                    <a href="/login" class="nav-item">Login</a>
+                                    <a href="/signup" class="btn btn-primary">Sign Up</a>
+                                    <% } %>
+            </div>
+        </nav>
+
+        <main class="main-content">

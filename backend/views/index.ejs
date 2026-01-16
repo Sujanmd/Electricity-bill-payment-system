@@ -1,0 +1,30 @@
+<%- include('header', { title: 'Home' , user: null }) %>
+
+    <div class="hero">
+        <h1>Pay Your Electricity Bills <br> Seamlessly</h1>
+        <p>Manage your utility bills, view payment history, and pay securely online with the modern electricity bill
+            payment system.</p>
+
+        <div class="hero-cta">
+            <a href="/login" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Get Started</a>
+            <a href="/signup" class="btn btn-outline"
+                style="padding: 1rem 2rem; font-size: 1.1rem; margin-left: 1rem;">Create Account</a>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Fast Payments</h3>
+                <p>Pay your bills in seconds with our optimized payment flow.</p>
+            </div>
+            <div class="feature-card">
+                <h3 class="feature-title">Secure</h3>
+                <p>Your data is protected with enterprise-grade security.</p>
+            </div>
+            <div class="feature-card">
+                <h3 class="feature-title">History Tracking</h3>
+                <p>Keep track of all your past electricity consumption and payments.</p>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
